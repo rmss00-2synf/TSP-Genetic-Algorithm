@@ -21,10 +21,10 @@ public class HelloApplication extends Application {
 //        canvas = new Canvas(WIDTH, HEIGHT);
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 500);
+        Scene scene = new Scene(fxmlLoader.load(), 930, 540.0);
         stage.setTitle("Algorithme Génétique pour le TSP");
         stage.setScene(scene);
-//        stage.setResizable(false);
+        stage.setResizable(false);
         stage.show();
     }
 

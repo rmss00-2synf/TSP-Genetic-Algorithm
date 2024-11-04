@@ -3,6 +3,7 @@
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <Pane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.algorithmegenetique.HelloController">
    <children>
@@ -40,18 +41,88 @@
             </VBox>
          </children>
       </GridPane>
-      <VBox layoutX="562.0" prefHeight="540.0" prefWidth="241.0" style="-fx-background-color: #f1f1;">
+      <VBox layoutX="562.0" prefHeight="540.0" prefWidth="384.0" style="-fx-background-color: #f1f1;">
          <children>
-            <Label prefHeight="35.0" prefWidth="224.0" text="Label" />
-            <Label prefHeight="27.0" prefWidth="218.0" text="Label" />
-            <ProgressBar prefWidth="200.0" progress="0.0" />
-            <ProgressIndicator prefHeight="52.0" prefWidth="96.0" progress="0.0" />
-            <Button mnemonicParsing="false" onAction="#eventen" text="Button" />
+            <GridPane prefHeight="175.0" prefWidth="384.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="104.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="280.0" minWidth="10.0" prefWidth="280.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="58.4" minHeight="10.0" prefHeight="39.799998092651364" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="103.79999809265135" minHeight="10.0" prefHeight="36.400000000000006" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="113.40000762939454" minHeight="0.0" prefHeight="99.6" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="35.0" prefWidth="96.0" text="Distance initiale:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label prefHeight="27.0" prefWidth="97.0" text="Distance finale:" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label text="La liste des villes:" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label fx:id="initial" prefHeight="18.0" prefWidth="89.0" text="Infini" GridPane.columnIndex="1" />
+                  <Label fx:id="finale" prefHeight="18.0" prefWidth="92.0" text="infini" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="lesvilles" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+            <Button mnemonicParsing="false" onAction="#eventen" text="Lancez!" />
+            <Separator prefWidth="200.0" />
+            <Separator prefWidth="200.0" />
+            <Label alignment="CENTER" prefHeight="51.0" prefWidth="370.0" text="Modifier les parametres" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font></Label>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="18.0" prefWidth="134.0" text="Nombre d'iterations:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label prefHeight="18.0" prefWidth="100.0" text="Pas precis" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label prefHeight="18.0" prefWidth="87.0" text="Pas precis" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <TextField fx:id="iteration" text="20" GridPane.columnIndex="1" />
+               </children>
+            </GridPane>
+            <Button fx:id="relance" mnemonicParsing="false" onAction="#relancement" text="Lancez" />
+            <Separator prefWidth="200.0" />
+            <Separator prefWidth="200.0" />
+            <Label prefHeight="43.0" prefWidth="370.0" text="Realise par : SYLLA N'faly">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="392.0" prefHeight="61.0" prefWidth="370.0" text="Encadre par : Pr.  Rahali AZOUZI">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label prefHeight="29.0" prefWidth="339.0" text="ENSA Tanger: 2024-2025" />
          </children>
       </VBox>
       <Pane prefHeight="507.0" prefWidth="459.0">
          <children>
-            <Canvas fx:id="canvas" height="522.0" layoutX="-4.0" layoutY="-1.0" width="514.0" />
+            <Canvas fx:id="canvas" height="522.0" layoutX="-4.0" layoutY="-1.0" width="562.0" />
          </children>
       </Pane>
    </children>

@@ -1,5 +1,6 @@
 package org.example.algorithmegenetique;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.example.algorithmegenetique.classapps.*;
@@ -20,6 +22,16 @@ public class HelloController {
     private Label welcomeText;
     @FXML
     private Canvas canvas;
+    @FXML
+    private Label initial;
+    @FXML
+    private Label finale;
+    @FXML
+    private Label lesvilles;
+    @FXML
+    private TextField iteration;
+
+
 
     private Circuit circuits;
     private GestionnaireCircuit gest=new GestionnaireCircuit();
@@ -28,16 +40,29 @@ public class HelloController {
     private static final int HEIGHT = 507;
     @FXML
     public void eventen(ActionEvent actionEvent)  {
+        clear();
 //        stage.setFullScreen(false);
 //        canvas = new Canvas(WIDTH, HEIGHT);
         initialize(gest);
         GestionnaireCircuit.getVillesDestinations().stream().forEach(System.out::println);
         population=new Population(gest,5,true);
         System.out.println("Distance initiale : " + population.getFittest().getDistance());
-
+        initial.setText(Math.round(population.getFittest().getDistance())+" Km");
+        System.out.println(iteration.getText());
         GA ga =new GA(gest);
+        final Integer[] number = new Integer[1];
         new Thread(() -> {
-            for (int i = 0; i < 20; i++) { // 1000 générations
+            try {
+                // Conversion de la chaîne en entier
+                 number[0] = Integer.parseInt(iteration.getText());
+                System.out.println("La valeur entière est : " + number[0]);
+            } catch (NumberFormatException e) {
+                // Gestion des erreurs si la chaîne ne peut pas être convertie
+                System.out.println("La chaîne ne peut pas être convertie en entier : " + e.getMessage());
+                number[0] =20;
+            }
+
+            for (int i = 0; i < number[0]; i++) { // 1000 générations
                 population = ga.evoluerPopulation(population);
                 drawBestTour();
                 try {
@@ -49,15 +74,45 @@ public class HelloController {
 
             System.out.println("Distance finale : " + population.getFittest().getDistance());
             Circuit meilleurePopulation = population.getFittest();
-            for (Ville ville : meilleurePopulation.getCircuit()) {
-                System.out.println("Ville: " + ville.getNom() + " [Lon: " + ville.getLon() + ", Lat: " + ville.getLat() + "]");
-            }
+            Platform.runLater(() -> {
+                finale.setText(Math.round(population.getFittest().getDistance())+" Km");
+                String name ="";
+                int i=0;
+                for (Ville ville : meilleurePopulation.getCircuit()) {
+                    i++;
+                    if(i%3==0){
+                        name += "\n";
+                    }
+                    name = name + ville.getNom() + "--> ";
+
+//                System.out.println("Ville: " + ville.getNom() + " [Lon: " + ville.getLon() + ", Lat: " + ville.getLat() + "]");
+                }
+                lesvilles.setText(name);
+            });
+
         }).start();
+
+
 
 
 
     }
 
+    private void clear() {
+        // Nettoyer les champs de texte
+        initial.setText("");
+        finale.setText("");
+        lesvilles.setText("");
+        population = null;
+    }
+
+    @FXML
+    public void relancement(ActionEvent actionEvent) {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight()); // Efface le canvas avant de redessiner
+
+        eventen(actionEvent);
+    }
     private void drawBestTour() {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight()); // Efface le canvas avant de redessiner
