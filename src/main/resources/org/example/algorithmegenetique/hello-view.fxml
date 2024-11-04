@@ -6,7 +6,7 @@
 
 <Pane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.algorithmegenetique.HelloController">
    <children>
-      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="686.0" visible="false">
+      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="800.0" visible="false">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -40,7 +40,7 @@
             </VBox>
          </children>
       </GridPane>
-      <VBox layoutX="456.0" prefHeight="507.0" prefWidth="230.0" style="-fx-background-color: #f1f1;">
+      <VBox layoutX="562.0" prefHeight="540.0" prefWidth="241.0" style="-fx-background-color: #f1f1;">
          <children>
             <Label prefHeight="35.0" prefWidth="224.0" text="Label" />
             <Label prefHeight="27.0" prefWidth="218.0" text="Label" />
@@ -51,7 +51,7 @@
       </VBox>
       <Pane prefHeight="507.0" prefWidth="459.0">
          <children>
-            <Canvas fx:id="canvas" height="507.0" layoutX="-4.0" layoutY="-1.0" width="466.0" />
+            <Canvas fx:id="canvas" height="522.0" layoutX="-4.0" layoutY="-1.0" width="514.0" />
          </children>
       </Pane>
    </children>

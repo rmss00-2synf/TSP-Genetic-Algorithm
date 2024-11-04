@@ -28,4 +28,15 @@ public class Ville {
         double distanceY = (this.lat - ville.getLat()) * 40000 / 360;
         return Math.sqrt((distanceX * distanceX) + (distanceY * distanceY));
     }
+
+    @Override
+    public String toString() {
+        return "Ville{" + "lon=" + lon + ", lat=" + lat + ", nom=" + nom + '}';
+    }
+
+    public double distanceTo(Ville other) {
+        double dx = this.lat - other.lat;
+        double dy = this.lon - other.lon;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
 }
